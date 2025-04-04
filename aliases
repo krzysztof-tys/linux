@@ -1,0 +1,13 @@
+# 1. Connect headphones
+
+# Find MAC address
+bluetoothctl
+
+  # -> devices
+  # find a line 'Device xx:xx:xx:xx:xx:xx headphones_name'
+
+alias q20='bluetoothctl connect [MAC of headphones]'
+alias bt='bluetoothctl'
+
+# 1. sync obsidian notes
+alias sync='f(){ prev_pwd=$(pwd); cd ~/Documents/notes/; msg="${1:-sync}"; git add . && git commit -m "$msg" && git push; cd "$prev_pwd"; }; f'
