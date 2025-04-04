@@ -1,0 +1,19 @@
+
+#!/bin/bash
+
+# Navigate to the notes directory
+cd ~/Documents/notes/
+
+# Check if there are any changes in the Git repository
+if [[ -n "$(git status --porcelain)" ]]; then
+  # Get the list of changed files
+  changed_files=$(git status --porcelain | awk '{print $2}' | tr '\n' ' ')
+
+  # Prepare the commit message
+  msg="sync: $changed_files"
+
+  # Add, commit, and push the changes
+  git add . && git commit -m "$msg" && git push
+else
+  echo "No changes detected."
+fi
