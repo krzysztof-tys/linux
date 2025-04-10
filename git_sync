@@ -11,9 +11,9 @@ cd ~/Documents/notes/
 if [ -n "$(git status --porcelain)" ]; then
   # Get the list of changed files
   # awk - get third column
-  # sed - trim the quote character
+  # sed - rmv first 3 char; rmv everything till last '/'; remove trailing quote '"'
   # tr - change eol to space if multiple files detected
-  changed_files=$(git status --porcelain | awk '{print $3}' | sed 's/"$//' | tr '\n' ' ')
+  changed_files=$(git status --porcelain | sed 's/^...//' | sed 's!.*/!!' | sed 's/"$//' | tr '\n' ' ')
 
   # Prepare the commit message
   msg="sync: $changed_files"
